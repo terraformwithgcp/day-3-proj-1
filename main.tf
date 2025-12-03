@@ -36,8 +36,13 @@ resource "google_compute_disk" "disk1" {
 
 resource "google_compute_attached_disk" "attach1" {
     instance = google_compute_instance.vm1.id
-    disk     = google_compute_disk.disk1.id
+    disk     = "${google_compute_disk.disk1.id}"
 
+}
+resource "google_storage_bucket" "st1" {
+    name     = "${var.project-id}-${google_compute_instance.vm1.name}-${google_compute_disk.disk1.size}-bucket"
+    location = "US"
+  
 }
 
 
