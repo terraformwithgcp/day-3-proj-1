@@ -34,6 +34,14 @@ resource "google_compute_disk" "disk1" {
  size  = 40
  }
 
+resource "google_compute_attached_disk" "attach1" {
+    instance = google_compute_instance.vm1.id
+    disk     = google_compute_disk.disk1.id
+
+}
+
+
+
 
 resource "google_bigquery_dataset" "bgdata1" {
  dataset_id = "cloudlabs19_bigquery_dataset"
